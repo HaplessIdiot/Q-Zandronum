@@ -41,7 +41,7 @@ jobs:
           lib64pango1.0-devel \
           lib64cairo-devel \
           lib64atk1.0-devel \
-          lib64gdk_pixbuf2.0-devel
+          lib64gdk_pixbuf2.0-devel automake autoconf libtool lib64gettext-devel
 
     - name: Build gtk2-ng
       run: |
@@ -49,8 +49,9 @@ jobs:
         mkdir -p /tmp/gtk2-ng-src/build
         cd /tmp/gtk2-ng-src/build
         # Installing to /opt to match your local 5800X3D layout
-        cmake .. -DCMAKE_INSTALL_PREFIX=/opt/gtk2-ng -GNinja
-        ninja install
+        ./autogen.sh --prefix=/opt/gtk2-ng
+        make -j$(nproc)
+        make install
 
     - name: Configure CMake
       run: |
