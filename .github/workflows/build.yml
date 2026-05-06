@@ -13,6 +13,9 @@ jobs:
     container: openmandriva/cooker
 
     steps:
+    - name: Install git
+      run: dnf install -y --nogpgcheck git-core
+    
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
