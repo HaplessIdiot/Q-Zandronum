@@ -13,9 +13,6 @@ jobs:
     container: openmandriva/cooker
 
     steps:
-    - name: Install git
-      run: dnf install -y --nogpgcheck git-core
-    
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
@@ -26,6 +23,7 @@ jobs:
         dnf install -y --nogpgcheck \
           cmake \
           gcc-c++ \
+          git-core \
           ninja \
           python3 \
           lib64SDL-devel \
@@ -41,7 +39,9 @@ jobs:
           lib64pango1.0-devel \
           lib64cairo-devel \
           lib64atk1.0-devel \
-          lib64gdk_pixbuf2.0-devel automake autoconf libtool lib64gettext-devel
+          lib64gdk_pixbuf2.0-devel \
+          rubygem-gobject-introspection-devel \
+          gtk-doc automake autoconf libtool lib64gettext-devel
 
     - name: Build gtk2-ng
       run: |
