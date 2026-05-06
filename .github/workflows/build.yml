@@ -46,8 +46,7 @@ jobs:
     - name: Build gtk2-ng
       run: |
         git clone https://git.devuan.org/Daemonratte/gtk2-ng.git /tmp/gtk2-ng-src
-        mkdir -p /tmp/gtk2-ng-src/build
-        cd /tmp/gtk2-ng-src/build
+        cd /tmp/gtk2-ng-src
         # Installing to /opt to match your local 5800X3D layout
         ./autogen.sh --prefix=/opt/gtk2-ng
         make -j$(nproc)
