@@ -13,6 +13,9 @@ jobs:
     container: openmandriva/cooker
 
     steps:
+    - name: Bootstrap Git
+      run: dnf install -y --nogpgcheck git-core
+      
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
@@ -23,7 +26,6 @@ jobs:
         dnf install -y --nogpgcheck \
           cmake \
           gcc-c++ \
-          git-core \
           ninja \
           python3 \
           lib64SDL-devel \
