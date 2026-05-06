@@ -41,6 +41,7 @@ jobs:
           lib64xcursor-devel \
           lib64glib2.0-devel \
           lib64pango1.0-devel \
+          libpangocairo1.0-devel \
           lib64cairo-devel \
           lib64atk1.0-devel \
           lib64gdk_pixbuf2.0-devel \
