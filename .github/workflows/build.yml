@@ -1,0 +1,50 @@
+name: Q-Zandronum Cooker CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-cooker:
+    runs-on: ubuntu-latest
+    # Using the official OpenMandriva Cooker container
+    container: openmandriva/cooker
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install Build Dependencies
+      run: |
+        dnf install -y --nogpgcheck \
+          cmake \
+          gcc-c++ \
+          ninja \
+          python3 \
+          lib64SDL2-devel \
+          lib64SDL2_mixer-devel \
+          lib64OpenAL-devel \
+          lib64sndfile-devel \
+          lib64mpg123-devel \
+          lib64fluidsynth-devel \
+          lib64openssl-devel \
+          lib64xcursor-devel \
+          pkgconfig(gtk+-2.0)
+
+    - name: Configure CMake
+      run: |
+        mkdir build && cd build
+        cmake .. \
+          -GNinja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DNO_GTK=OFF \
+          -DOpenGL_GL_PREFERENCE=GLVND \
+          -DCMAKE_POLICY_DEFAULT_CMP0148=NEW \
+          -Wno-dev
+
+    - name: Build Engine
+      run: ninja -C build
