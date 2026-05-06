@@ -64,7 +64,7 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release \
           -DNO_GTK=OFF \
           -DOpenGL_GL_PREFERENCE=GLVND \
-          -DCMAKE_POLICY_DEFAULT_CMP0148=NEW \
+          -DCMAKE_POLICY_DEFAULT_CMP0148=OLD \
           -DGTK2_GDKCONFIG_INCLUDE_DIR=/opt/gtk2-ng/lib/gtk-2.0/include \
           -DGTK2_GLIBCONFIG_INCLUDE_DIR=/opt/gtk2-ng/lib/glib-2.0/include
 
