@@ -37,11 +37,11 @@ jobs:
           lib64fluidsynth-devel \
           lib64openssl-devel \
           lib64xcursor-devel \
-          glib2-devel \
-          pango-devel \
-          cairo-devel \
-          atk-devel \
-          gdk-pixbuf2-devel
+          lib64glib2.0-devel \
+          lib64pango1.0-devel \
+          lib64cairo-devel \
+          lib64atk1.0-devel \
+          lib64gdk_pixbuf2.0-devel
 
     - name: Build gtk2-ng
       run: |
