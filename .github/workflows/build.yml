@@ -25,6 +25,7 @@ jobs:
       run: |
         dnf install -y --nogpgcheck \
           cmake \
+          make binutils \
           gcc-c++ \
           ninja \
           python3 \
