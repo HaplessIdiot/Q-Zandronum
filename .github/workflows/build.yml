@@ -28,15 +28,29 @@ jobs:
           gcc-c++ \
           ninja \
           python3 \
+          lib64SDL-devel \
           lib64SDL2-devel \
           lib64SDL2_mixer-devel \
-          lib64OpenAL-devel \
+          lib64openal-devel \
           lib64sndfile-devel \
           lib64mpg123-devel \
           lib64fluidsynth-devel \
           lib64openssl-devel \
           lib64xcursor-devel \
-          pkgconfig(gtk+-2.0)
+          glib2-devel \
+          pango-devel \
+          cairo-devel \
+          atk-devel \
+          gdk-pixbuf2-devel
+
+    - name: Build gtk2-ng
+      run: |
+        git clone https://git.devuan.org/Daemonratte/gtk2-ng.git /tmp/gtk2-ng-src
+        mkdir -p /tmp/gtk2-ng-src/build
+        cd /tmp/gtk2-ng-src/build
+        # Installing to /opt to match your local 5800X3D layout
+        cmake .. -DCMAKE_INSTALL_PREFIX=/opt/gtk2-ng -GNinja
+        ninja install
 
     - name: Configure CMake
       run: |
@@ -47,7 +61,14 @@ jobs:
           -DNO_GTK=OFF \
           -DOpenGL_GL_PREFERENCE=GLVND \
           -DCMAKE_POLICY_DEFAULT_CMP0148=NEW \
-          -Wno-dev
+          -DGTK2_GDKCONFIG_INCLUDE_DIR=/opt/gtk2-ng/lib/gtk-2.0/include \
+          -DGTK2_GLIBCONFIG_INCLUDE_DIR=/opt/gtk2-ng/lib/glib-2.0/include
 
     - name: Build Engine
       run: ninja -C build
+
+
+
+
+
+
