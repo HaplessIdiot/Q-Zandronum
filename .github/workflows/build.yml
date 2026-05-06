@@ -29,6 +29,7 @@ jobs:
           gcc-c++ \
           ninja \
           python3 \
+          glibc-devel \
           lib64SDL-devel \
           lib64SDL2-devel \
           lib64SDL2_mixer-devel \
